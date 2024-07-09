@@ -10,18 +10,18 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "cliente")
-public class Cliente
+@Table(name = "utente")
+public class Utente
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente", nullable = false)
-    private Long id_cliente;
+    @Column(name = "id_utente", nullable = false)
+    private Long id_utente;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "cognome", nullable = false)
+    @Column(name = "cognome")
     private String cognome;
 
     @Column(name = "e_mail", nullable = false, unique = true, length = 320)
@@ -30,7 +30,10 @@ public class Cliente
     @Column(name = "passw", nullable = false)
     private String passw;
 
-    @Column(name = "credito", nullable = false)
+    @Column(name = "privilegio")
+    private String privilegio;
+
+    @Column(name = "credito")
     private double credito;
 
     @OneToMany(mappedBy = "cliente", orphanRemoval = true)

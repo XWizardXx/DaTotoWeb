@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @Entity
@@ -19,8 +16,8 @@ public class Ordine
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "cliente", nullable = false, unique = true)
-    private Cliente cliente;
+    @JoinColumn(name = "utente", nullable = false, unique = true)
+    private Utente utente;
 
     @Column(name = "prezzo", nullable = false)
     private double prezzo;

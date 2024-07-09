@@ -13,10 +13,10 @@ public class Prodotto
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_prodotto", nullable = false)
-    private Long id;
+    private long id;
 
     @Column(name = "prezzo_unitario", nullable = false)
-    private Double prezzo_unitario;
+    private float prezzo_unitario;
 
     @Column(name = "descrizione", nullable = false, unique = true, length = 512)
     private String descrizione;
