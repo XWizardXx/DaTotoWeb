@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -11,9 +14,9 @@ import lombok.Setter;
 public class Cliente
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente", nullable = false)
-    private long id_cliente;
+    private Long id_cliente;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -21,13 +24,16 @@ public class Cliente
     @Column(name = "cognome", nullable = false)
     private String cognome;
 
-    @Column(name = "e_mail", nullable = false, unique = true)
+    @Column(name = "e_mail", nullable = false, unique = true, length = 320)
     private String e_mail;
 
     @Column(name = "passw", nullable = false)
     private String passw;
 
     @Column(name = "credito", nullable = false)
-    private int credito;
+    private double credito;
+
+    @OneToMany(mappedBy = "cliente", orphanRemoval = true)
+    private Set<Ordine> ordini = new LinkedHashSet<>();
 
 }

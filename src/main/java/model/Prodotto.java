@@ -3,7 +3,6 @@ package model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Getter
 @Setter
@@ -12,17 +11,21 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 public class Prodotto
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_prodotto", nullable = false)
-    private int id_prodotto;
+    private Long id;
+
+    @Column(name = "prezzo_unitario", nullable = false)
+    private Double prezzo_unitario;
+
+    @Column(name = "descrizione", nullable = false, unique = true, length = 512)
+    private String descrizione;
 
     @Column(name = "nome", nullable = false, unique = true)
     private String nome;
 
-    @Column(name = "descrizione", nullable = false)
-    private String descrizione;
 
     @Column(name = "quantita", nullable = false)
-    private int quantita;
+    private String quantita;
 
 }
