@@ -25,5 +25,5 @@ public class Prodotto
     private String nome;
 
     @Column(name = "quantita", nullable = false)
-    private String quantita;
+    private int quantita;
 }

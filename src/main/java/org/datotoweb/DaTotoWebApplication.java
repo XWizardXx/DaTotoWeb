@@ -10,7 +10,6 @@ public class DaTotoWebApplication
     public static void main(String[] args)
     {
         SpringApplication.run(DaTotoWebApplication.class, args);
-        System.out.println("suka");
     }
 
 }
