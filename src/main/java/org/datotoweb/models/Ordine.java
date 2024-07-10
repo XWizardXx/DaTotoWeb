@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -30,7 +30,7 @@ public class Ordine
     private String stato;
 
     @Column(name = "data_ordine", nullable = false)
-    private String data_ordine;
+    private Date data_ordine;
 
     @OneToMany
     @JoinTable(name = "ordine_prodotto",
