@@ -1,4 +1,4 @@
-package model;
+package org.datotoweb.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,8 +24,6 @@ public class Prodotto
     @Column(name = "nome", nullable = false, unique = true)
     private String nome;
 
-
     @Column(name = "quantita", nullable = false)
     private String quantita;
-
 }

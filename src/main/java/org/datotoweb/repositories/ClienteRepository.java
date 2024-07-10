@@ -1,6 +1,6 @@
-package repositories;
+package org.datotoweb.repositories;
 
-import model.Utente;
+import org.datotoweb.models.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

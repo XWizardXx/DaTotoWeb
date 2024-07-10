@@ -1,4 +1,4 @@
-package model;
+package org.datotoweb.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,7 +36,6 @@ public class Utente
     @Column(name = "credito")
     private double credito;
 
-    @OneToMany(mappedBy = "cliente", orphanRemoval = true)
+    @OneToMany(mappedBy = "utente", orphanRemoval = true)
     private Set<Ordine> ordini = new LinkedHashSet<>();
-
 }

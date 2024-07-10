@@ -1,8 +1,11 @@
-package model;
+package org.datotoweb.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,5 +31,10 @@ public class Ordine
     @Column(name = "data_ordine", nullable = false)
     private String data_ordine;
 
+    @OneToMany
+    @JoinTable(name = "ordine_prodotto",
+            joinColumns = @JoinColumn(name = "ordine"),
+            inverseJoinColumns = @JoinColumn(name = "prodotto"))
+    private Set<Prodotto> prodotto = new LinkedHashSet<>();
 
 }

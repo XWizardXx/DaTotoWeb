@@ -1,4 +1,4 @@
-package org.example.datotoweb;
+package org.datotoweb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
