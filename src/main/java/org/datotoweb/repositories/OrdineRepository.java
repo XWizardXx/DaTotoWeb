@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface OrdineRepository extends JpaRepository<Ordine, Long>
 {
-    @Query("SELECT O FROM Ordine O, Utente U WHERE O.utente = U AND U.id_utente = ?1")
+    @Query("SELECT O FROM Ordine O WHERE O.utente = ?1")
     List<Ordine> findOrdineByUtenteOrderBydata_ordineDesc(Utente utente);
 
     @Query("SELECT O FROM Ordine O WHERE O.data_ordine = ?1")
