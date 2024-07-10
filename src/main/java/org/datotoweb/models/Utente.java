@@ -33,9 +33,6 @@ public class Utente
     @Column(name = "privilegio")
     private String privilegio;
 
-    @Column(name = "credito")
-    private int credito;
-
     @OneToMany(mappedBy = "utente", orphanRemoval = true)
     private Set<Ordine> ordini = new LinkedHashSet<>();
 }
