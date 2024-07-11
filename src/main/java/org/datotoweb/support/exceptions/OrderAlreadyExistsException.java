@@ -1,4 +1,4 @@
-package org.datotoweb.support.exeptions;
+package org.datotoweb.support.exceptions;
 
 public class OrderAlreadyExistsException extends Exception
 {

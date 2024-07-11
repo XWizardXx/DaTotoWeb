@@ -3,7 +3,7 @@ package org.datotoweb.services;
 import org.datotoweb.models.Ordine;
 import org.datotoweb.models.Utente;
 import org.datotoweb.repositories.OrdineRepository;
-import org.datotoweb.support.exeptions.OrderAlreadyExistsException;
+import org.datotoweb.support.exceptions.OrderAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,31 +16,31 @@ import java.util.List;
 public class OrdineService
 {
     @Autowired
-    private OrdineRepository ordineRepo;
+    private OrdineRepository ordineRepository;
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public Ordine creaOrdine(Ordine ordine) throws OrderAlreadyExistsException
     {
-        if(ordineRepo.existsById(ordine.getId()))
+        if(ordineRepository.existsById(ordine.getId()))
             throw new OrderAlreadyExistsException();
-        return ordineRepo.save(ordine);
-    }
+        return ordineRepository.save(ordine);
+    } 
 
     @Transactional(readOnly = true)
     public List<Ordine> getOrdini()
     {
-        return ordineRepo.findAll();
+        return ordineRepository.findAll();
     }
 
     @Transactional(readOnly = true)
     public List<Ordine> getOrdineByUtente(Utente utente)
     {
-        return ordineRepo.findOrdineByUtenteOrderBydata_ordineDesc(utente);
+        return ordineRepository.findOrdineByUtenteOrderBydata_ordineDesc(utente);
     }
 
     @Transactional(readOnly = true)
     public List<Ordine> getOrdineByData(Date data)
     {
-        return ordineRepo.findBydata_ordineOrderBydata_ordineDesc(data);
+        return ordineRepository.findBydata_ordineOrderBydata_ordineDesc(data);
     }
 }
