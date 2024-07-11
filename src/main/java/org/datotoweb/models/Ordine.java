@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,6 +36,5 @@ public class Ordine
     @JoinTable(name = "ordine_prodotto",
             joinColumns = @JoinColumn(name = "ordine"),
             inverseJoinColumns = @JoinColumn(name = "prodotto"))
-    private Set<Prodotto> prodotto = new LinkedHashSet<>();
-
+    private List<Prodotto> prodotto = new LinkedList<>();
 }

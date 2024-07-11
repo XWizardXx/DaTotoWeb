@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,7 +25,7 @@ public class Utente
     private String cognome;
 
     @Column(name = "e_mail", nullable = false, unique = true, length = 320)
-    private String e_mail;
+    private String email;
 
     @Column(name = "passw", nullable = false)
     private String passw;
@@ -34,5 +34,5 @@ public class Utente
     private String privilegio;
 
     @OneToMany(mappedBy = "utente", orphanRemoval = true)
-    private Set<Ordine> ordini = new LinkedHashSet<>();
+    private List<Ordine> ordini = new LinkedList<>();
 }
