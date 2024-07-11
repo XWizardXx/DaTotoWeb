@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UtenteRepository extends JpaRepository<Utente, Long>
 {
-    @Query("SELECT U FROM Utente U WHERE U.e_mail like ?1")
+    @Query("SELECT U FROM Utente U WHERE U.email like ?1")
     Utente findByEmailLike(String email);
 
     boolean existsByEmail(String email);
