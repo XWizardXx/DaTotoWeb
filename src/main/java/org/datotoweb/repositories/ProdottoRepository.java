@@ -13,9 +13,12 @@ import java.util.List;
 public interface ProdottoRepository extends JpaRepository<Prodotto, Long>
 {
     @Query("SELECT P FROM Prodotto P WHERE P.nome LIKE ?1")
-    List<Prodotto> findByNomeLike(String nome, Pageable pageable);
+    Prodotto findByNomeLike(String nome);
 
     @Modifying
-    @Query("UPDATE Prodotto P SET P.quantita = ?1 WHERE P.nome LIKE ?2")
-    int updateQuantita(int quantita, String nome);
+    @Query("UPDATE Prodotto P SET P.quantita = ?1 WHERE P = ?2")
+    void updateQuantita(int quantita, Prodotto p);
+
+    @Query("SELECT P FROM Prodotto P WHERE P.quantita > 0")
+    List<Prodotto> findByQuantitaPositiva(Pageable pageable);
 }

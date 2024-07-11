@@ -17,4 +17,5 @@ public interface OrdineRepository extends JpaRepository<Ordine, Long>
 
     @Query("SELECT O FROM Ordine O WHERE O.data_ordine = ?1")
     List<Ordine> findBydata_ordineOrderBydata_ordineDesc(Date data_ordine);
+
 }
