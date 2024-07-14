@@ -13,7 +13,7 @@ import java.util.List;
 public interface ProdottoRepository extends JpaRepository<Prodotto, Long>
 {
     @Query("SELECT P FROM Prodotto P WHERE P.nome LIKE ?1")
-    Prodotto findByNomeLike(String nome);
+    List<Prodotto> findByNomeLike(String nome);
 
     @Modifying
     @Query("UPDATE Prodotto P SET P.quantita = ?1 WHERE P = ?2")

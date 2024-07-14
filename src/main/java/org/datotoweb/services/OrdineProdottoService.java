@@ -3,6 +3,7 @@ package org.datotoweb.services;
 import org.datotoweb.models.Ordine;
 import org.datotoweb.models.OrdineProdotto;
 import org.datotoweb.models.Prodotto;
+import org.datotoweb.models.Utente;
 import org.datotoweb.repositories.OrdineProdottoRepository;
 import org.datotoweb.support.exceptions.OrdineProdottoEsistenteExcetion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,14 @@ public class OrdineProdottoService
         return ordineProdottoRepository.findByProdotto(prodotto);
     }
 
+    @Transactional(readOnly = true)
     public int getNumeroProdottoOrdine(Ordine ordine, Prodotto prodotto)
     {
         return ordineProdottoRepository.numeroProdottoInOrdine(ordine, prodotto);
+    }
+    @Transactional(readOnly = true)
+    public List<Prodotto> getPreferiti(Utente utente)
+    {
+        return ordineProdottoRepository.findProdottoByUtenteMoreThan4OrderByNumeroNumeroDesc(utente);
     }
 }

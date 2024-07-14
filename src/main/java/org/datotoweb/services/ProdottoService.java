@@ -52,7 +52,7 @@ public class ProdottoService
     }
 
     @Transactional(readOnly = true)
-    public Prodotto getProdotto(String nome)
+    public List<Prodotto> getProdotto(String nome)
     {
         return prodottoRepository.findByNomeLike(nome);
     }

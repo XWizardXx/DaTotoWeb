@@ -5,6 +5,9 @@ import org.datotoweb.models.Utente;
 import org.datotoweb.repositories.OrdineRepository;
 import org.datotoweb.support.exceptions.OrderAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,14 +36,16 @@ public class OrdineService
     }
 
     @Transactional(readOnly = true)
-    public List<Ordine> getOrdineByUtente(Utente utente)
+    public List<Ordine> getOrdineByUtente(Utente utente,int numeroPagina, int dimensionePagina, String sortBy)
     {
-        return ordineRepository.findOrdineByUtenteOrderBydata_ordineDesc(utente);
+        Pageable pageable = PageRequest.of(numeroPagina, dimensionePagina, Sort.by(sortBy));
+        return ordineRepository.findOrdineByUtenteOrderBydata_ordineDesc(utente, pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<Ordine> getOrdineByData(Date data)
+    public List<Ordine> getOrdineByData(Date data, Utente utente,int numeroPagina, int dimensionePagina, String sortBy)
     {
-        return ordineRepository.findBydata_ordineOrderBydata_ordineDesc(data);
+        Pageable pageable = PageRequest.of(numeroPagina, dimensionePagina, Sort.by(sortBy));
+        return ordineRepository.findByDataUtente_ordineOrderBydata_ordineDesc(data, utente, pageable);
     }
 }
