@@ -1,10 +1,8 @@
 package org.datotoweb.restControllers;
 
-import org.datotoweb.models.Ordine;
 import org.datotoweb.models.Prodotto;
 import org.datotoweb.models.Utente;
 import org.datotoweb.services.OrdineProdottoService;
-import org.datotoweb.services.OrdineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

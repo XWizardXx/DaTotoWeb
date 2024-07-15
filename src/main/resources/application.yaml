@@ -1,0 +1,5 @@
+jwt:
+  auth:
+    converter:
+      resource-id: DaToto-springBoot
+      principle-attribute: preferred_username

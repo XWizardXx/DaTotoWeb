@@ -1,6 +1,5 @@
 package org.datotoweb.restControllers;
 
-import jakarta.validation.Valid;
 import org.datotoweb.models.Ordine;
 import org.datotoweb.models.OrdineProdotto;
 import org.datotoweb.models.Prodotto;
@@ -16,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @RestController
