@@ -14,13 +14,13 @@ public class OrdineProdotto
     @EmbeddedId
     OrdineProdottoKey key;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @MapsId("prodotto")
     @JoinColumn(name = "prodotto", nullable = false)
     private Prodotto prodotto;
 
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @MapsId("ordine")
     @JoinColumn(name = "ordine", nullable = false)
     private Ordine ordine;

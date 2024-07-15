@@ -14,11 +14,11 @@ import java.util.List;
 @Repository
 public interface OrdineProdottoRepository extends JpaRepository<OrdineProdotto, Integer>
 {
-    @Query("SELECT OP FROM OrdineProdotto OP WHERE OP.prodotto = ?1")
-    public List<OrdineProdotto> findByProdotto(Prodotto prodotto);
+    @Query("SELECT OP.ordine FROM OrdineProdotto OP WHERE OP.prodotto = ?1")
+    public List<Ordine> findOrdineByProdotto(Prodotto prodotto);
 
-    @Query("SELECT OP FROM OrdineProdotto OP WHERE OP.ordine = ?1")
-    public List<OrdineProdotto> findByOrdine(Ordine ordine);
+    @Query("SELECT OP.prodotto FROM OrdineProdotto OP WHERE OP.ordine = ?1")
+    public List<Prodotto> findProdottoByOrdine(Ordine ordine);
 
     @Query("SELECT OP.numero FROM OrdineProdotto OP WHERE OP.ordine = ?1 AND OP.prodotto = ?2")
     public int numeroProdottoInOrdine(Ordine ordine, Prodotto prodotto);
