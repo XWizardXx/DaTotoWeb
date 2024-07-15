@@ -1,6 +1,5 @@
 package org.datotoweb.restControllers;
 
-import jakarta.validation.Valid;
 import org.datotoweb.models.Prodotto;
 import org.datotoweb.services.ProdottoService;
 import org.datotoweb.support.exceptions.ProdottoEsistenteException;
@@ -10,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,7 +38,7 @@ public class ProdottiController
     }
 
     @PostMapping("/create")
-    public ResponseEntity create(@RequestBody @Valid Prodotto prodotto)
+        public ResponseEntity create(@RequestBody @Valid Prodotto prodotto)
     {
         try
         {

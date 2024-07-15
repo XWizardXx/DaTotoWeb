@@ -1,9 +1,0 @@
-keycloak:
-  resource: DaTotoWeb
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwl-set-uri:
-          issiue-uri:
