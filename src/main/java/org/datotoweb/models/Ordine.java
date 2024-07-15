@@ -19,7 +19,7 @@ public class Ordine
     @Column(name = "id_ordine", nullable = false)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "utente", nullable = false, unique = true)
     private Utente utente;
 
@@ -31,10 +31,4 @@ public class Ordine
 
     @Column(name = "data_ordine", nullable = false)
     private Date data_ordine;
-
-    @OneToMany
-    @JoinTable(name = "ordine_prodotto",
-            joinColumns = @JoinColumn(name = "ordine"),
-            inverseJoinColumns = @JoinColumn(name = "prodotto"))
-    private List<Prodotto> prodotto = new LinkedList<>();
 }

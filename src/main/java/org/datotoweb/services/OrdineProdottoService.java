@@ -28,15 +28,15 @@ public class OrdineProdottoService
     }
 
     @Transactional(readOnly = true)
-    public List<OrdineProdotto> getByOrdine(Ordine ordine)
+    public List<Prodotto> getProdottoByOrdine(Ordine ordine)
     {
-        return ordineProdottoRepository.findByOrdine(ordine);
+        return ordineProdottoRepository.findProdottoByOrdine(ordine);
     }
 
     @Transactional(readOnly = true)
-    public List<OrdineProdotto> getByProdotto(Prodotto prodotto)
+    public List<Ordine> getOrdineByProdotto(Prodotto prodotto)
     {
-        return ordineProdottoRepository.findByProdotto(prodotto);
+        return ordineProdottoRepository.findOrdineByProdotto(prodotto);
     }
 
     @Transactional(readOnly = true)
