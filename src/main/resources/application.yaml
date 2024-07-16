@@ -1,3 +1,10 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://192.168.1.5:8081/realms/DaTotoWeb
+          jwk-set-uri: http://192.168.1.5:8081/realms/DaTotoWeb/protocol/openid-connect/certs
 jwt:
   auth:
     converter:
