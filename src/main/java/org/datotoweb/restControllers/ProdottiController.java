@@ -1,15 +1,18 @@
 package org.datotoweb.restControllers;
 
+import javax.validation.Valid;
+import org.datotoweb.models.Ordine;
 import org.datotoweb.models.Prodotto;
+import org.datotoweb.services.OrdineProdottoService;
 import org.datotoweb.services.ProdottoService;
 import org.datotoweb.support.exceptions.ProdottoEsistenteException;
 import org.datotoweb.support.messages.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,6 +21,8 @@ public class ProdottiController
 {
     @Autowired
     private ProdottoService prodottoService;
+    @Autowired
+    private OrdineProdottoService ordineProdottoService;
 
     @GetMapping("/paged")
     public ResponseEntity getProdottiDisponibili(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @RequestParam(value = "sortBy", defaultValue = "id") String sortBy)
@@ -37,8 +42,16 @@ public class ProdottiController
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
+    @GetMapping("/{prodotto}/ordini")
+    @PreAuthorize("hasRole('admin')")
+    public List<Ordine> getOrdineByProdotto(@Valid @RequestBody Prodotto prodotto)
+    {
+        return ordineProdottoService.getOrdineByProdotto(prodotto);
+    }
+
     @PostMapping("/create")
-        public ResponseEntity create(@RequestBody @Valid Prodotto prodotto)
+    @PreAuthorize("hasRole('admin')")
+    public ResponseEntity create(@RequestBody @Valid Prodotto prodotto)
     {
         try
         {

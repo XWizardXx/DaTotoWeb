@@ -1,6 +1,6 @@
 package org.datotoweb.restControllers;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.datotoweb.models.Ordine;
 import org.datotoweb.models.OrdineProdotto;
 import org.datotoweb.models.Prodotto;
@@ -14,6 +14,7 @@ import org.datotoweb.support.messages.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class OrdiniController
     private OrdineRepository ordineRepository;
 
     @GetMapping("/paged")
-    public ResponseEntity getOrdiniPaged(Utente utente, @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @RequestParam(value = "sortBy", defaultValue = "id") String sortBy)
+    public ResponseEntity getOrdiniPaged(@Valid @RequestBody Utente utente, @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @RequestParam(value = "sortBy", defaultValue = "id") String sortBy)
     {
         List<Ordine> ret = ordineService.getOrdineByUtente(utente, pageNumber, pageSize, sortBy);
         if (ret.isEmpty())
@@ -39,7 +40,7 @@ public class OrdiniController
     }
 
     @GetMapping("/search/by_data")
-    public ResponseEntity getOrdiniByDAta(Date data, Utente utente, @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @RequestParam(value = "sortBy", defaultValue = "id") String sortBy)
+    public ResponseEntity getOrdiniByDAta(Date data,@Valid @RequestBody Utente utente, @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @RequestParam(value = "sortBy", defaultValue = "id") String sortBy)
     {
         List<Ordine> ret = ordineService.getOrdineByData(data, utente, pageNumber, pageSize, sortBy);
         if (ret.isEmpty())
@@ -48,12 +49,14 @@ public class OrdiniController
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasRole('admin')")
     public List<Ordine> getOrdini()
     {
         return ordineService.getOrdini();
     }
 
-    @PostMapping
+    @PostMapping("/create")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity creaOrdine(@Valid @RequestBody Ordine ordine, List<OrdineProdotto> ordineProdottoList)
     {
         try
@@ -75,15 +78,10 @@ public class OrdiniController
     }
 
     @GetMapping("/{ordine}/prodotti")
+    @PreAuthorize("hasRole('admin')")
     public List<Prodotto> getProdottoByOrdine(@Valid @RequestBody Ordine ordine)
     {
         return ordineProdottoService.getProdottoByOrdine(ordine);
-    }
-
-    @GetMapping("/{prodotto}/ordini")
-    public List<Ordine> getOrdineByProdotto(@Valid @RequestBody Prodotto prodotto)
-    {
-        return ordineProdottoService.getOrdineByProdotto(prodotto);
     }
 
     @GetMapping
