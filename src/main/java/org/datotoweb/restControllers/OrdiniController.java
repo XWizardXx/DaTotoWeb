@@ -84,6 +84,13 @@ public class OrdiniController
         return ordineProdottoService.getProdottoByOrdine(ordine);
     }
 
+    @GetMapping("/{prodotto}/ordini")
+    @PreAuthorize("hasRole('admin')")
+    public List<Ordine> getOrdineByProdotto(@Valid @RequestBody Prodotto prodotto)
+    {
+        return ordineProdottoService.getOrdineByProdotto(prodotto);
+    }
+
     @GetMapping
     public int getNumeroProdotto(@Valid @RequestBody Ordine ordine ,@Valid @RequestBody Prodotto prodotto)
     {
