@@ -23,6 +23,7 @@ public class UtenteController
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
+    @GetMapping("/login")
     public ResponseEntity accediUtente(Utente utente) throws UserNotFoundException
     {
         utenteService.accediUtente(utente);
