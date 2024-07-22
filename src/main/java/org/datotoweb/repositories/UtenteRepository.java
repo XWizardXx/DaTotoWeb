@@ -12,4 +12,7 @@ public interface UtenteRepository extends JpaRepository<Utente, Long>
     Utente findByEmailLike(String email);
 
     boolean existsByEmail(String email);
+
+    Utente findByEmailIgnoreCaseAndPassw(String email, String passw);
+
 }
